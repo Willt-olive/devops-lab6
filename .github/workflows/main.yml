@@ -1,3 +1,26 @@
-              - name: Checkout
-                uses: actions/checkout@v4.1.1
-            
+  
+name: Build Workflow
+
+# Define when the workflow should run
+on:
+  # Trigger the workflow on push and pull request to the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Define the jobs to run
+jobs:
+  build:
+    # Specify the type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Define the sequence of tasks/steps
+    steps:
+    # Check out the repository code
+    - name: Checkout
+      uses: actions/checkout@v4.1.1
+
+    # Build the code using Makefile
+    - name: Build code
+      run: make
